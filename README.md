@@ -1,15 +1,15 @@
-Object and Sub-Object Detection using YOLOv5
-Overview
+#Object and Sub-Object Detection using YOLOv5
+##Overview
 This repository provides an implementation of object and sub-object detection using the YOLOv5 model. The approach includes the detection of main objects (e.g., "Person", "Car") and associated sub-objects (e.g., "Helmet", "Tire") within a hierarchical structure. It also includes modules for optimizing inference speed, modularity, and extensibility.
 
-Features
+##Features
 Main Object Detection: Detects objects such as "Person", "Car", etc.
 Sub-Object Detection: Detects sub-objects like "Helmet", "Tire" within bounding boxes of main objects.
 Hierarchical Structure: Organizes detected objects and sub-objects in a hierarchical JSON format.
 Real-Time Performance: Processes video frames at a speed of 10-30 FPS using optimization techniques.
 Sub-Object Image Cropping: Crops and saves images of detected sub-objects.
 
-Installation
+##Installation
 Step 1: Clone the repository
 
 git clone https://github.com/yourusername/object-subobject-detection.git
@@ -27,13 +27,14 @@ pip install yolov5
 
 Step 3: Download YOLOv5 weights
 YOLOv5 pre-trained weights are used for the object detection task. You can download them manually or use the following Python code to download the weights:
-# Automatically download YOLOv5 weights
+
+##Automatically download YOLOv5 weights
 python -c "from yolov5 import utils; utils.download('yolov5s.pt')"
 
 Step 4: (Optional) Prepare your own dataset
 If you plan to train your own object detection model, you can prepare a custom dataset following the YOLOv5 format. Refer to the official YOLOv5 README for guidance on how to set up your dataset.
 
-Execution
+##Execution
 Step 1: Run Object and Sub-Object Detection on a Video
 
 python detect_objects_and_subobjects.py --video "sample_video.mp4"
@@ -52,9 +53,9 @@ Available Command-Line Arguments:
 --webcam : Use webcam as the input (streams video from the first available camera).
 --output-dir : Directory to store output images and JSON results (default is current directory).
 
-Code Explanation
+##Code Explanation
 
-Object Detection and Sub-Object Detection Pipeline
+object Detection and Sub-Object Detection Pipeline
 Main Object Detection: Uses YOLOv5 pre-trained models to detect main objects in the input video or image.
 Sub-Object Detection: After detecting the main object, a secondary detection process checks for sub-objects within the bounding box of the main object.
 Hierarchical Structure: Objects and sub-objects are stored in a hierarchical JSON format:
@@ -70,7 +71,7 @@ Hierarchical Structure: Objects and sub-objects are stored in a hierarchical JSO
   }
 }
 
-Code for Cropping and Saving Sub-Object Images
+##Code for Cropping and Saving Sub-Object Images
 
 import cv2
 
@@ -84,7 +85,7 @@ def save_subobject_image(cropped_image, sub_object_id):
     cv2.imwrite(file_path, cropped_image)
 Inference Speed Optimization
 
-To optimize for real-time processing, we implement several strategies:
+##To optimize for real-time processing, we implement several strategies:
 
 Model Optimization: Use YOLOv5 variants like Tiny YOLO for faster inference.
 Multithreading/Concurrency: Split the frame processing into multiple threads to increase throughput.
@@ -119,7 +120,8 @@ Customization and Extensibility
 
 This system is designed to be modular and easily extensible:
 
-Object Detection Module: You can replace YOLOv5 with any other detection model.
+##Object Detection Module:
+You can replace YOLOv5 with any other detection model.
 Sub-Object Detection Module: Add or modify sub-object detectors as required.
 Configuration Files: Edit the config.yaml to change object-sub-object pairs to detect.
 Example config.yaml:
@@ -135,7 +137,7 @@ objects:
       - name: "Tire"
       - name: "Windshield"
 
-Troubleshooting
+##Troubleshooting
 
 Error: "Model not found": Ensure you've downloaded the YOLOv5 weights (yolov5s.pt).
 Low FPS: Consider using a faster YOLOv5 variant (e.g., Tiny YOLO) or optimize the model using ONNX.
